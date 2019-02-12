@@ -1,0 +1,43 @@
+{
+  "name": "gendiff_by_nick",
+  "version": "0.1.0",
+  "bin": {
+    "gendiff": "dist/bin/gendiff.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "description": "Project for self-education, compares two configuration files and shows a difference.",
+  "scripts": {
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeoShkolnick/project-lvl2-s417.git"
+  },
+  "keywords": [
+    "Brain Games",
+    "Hexlet",
+    "console-game"
+  ],
+  "author": "Nikolay Mizenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeoShkolnick/project-lvl2-s417/issues"
+  },
+  "homepage": "https://github.com/NeoShkolnick/project-lvl2-s417#readme",
+  "dependencies": {
+    "commander": "^2.19.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
