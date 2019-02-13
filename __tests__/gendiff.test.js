@@ -1,5 +1,5 @@
-import genDiff from '../src/';
 import fs from 'fs';
+import genDiff from '../src';
 
 test('absolute path', () => {
   const path1 = '/home/nick/hexlet/Project2/__tests__/__fixtures__/after1.json';
@@ -18,5 +18,5 @@ test('relative path', () => {
 test('incorrect path', () => {
   const path1 = '/home/nick/hexlet/Project2/__tests__/__fixtures__/after1.json';
   const path2 = './qwe/__fixtures__/before1.json';
-  expect(genDiff(path1, path2)).toBe("");
+  expect(genDiff(path1, path2)).toBe('');
 });

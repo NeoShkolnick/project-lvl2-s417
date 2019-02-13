@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import program from 'commander';
 import genDiff from '..';
-import fs from 'fs';
 
 const wrapperGenDiff = (firsFile, SecondFile) => {
   console.log(genDiff(firsFile, SecondFile));
