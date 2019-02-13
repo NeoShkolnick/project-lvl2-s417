@@ -1,6 +1,12 @@
 {
   "name": "gendiff_by_nick",
   "version": "1.0.0",
+  "eslintConfig": {
+       "env": {
+           "jest": true,
+           "node": true
+       }
+   },
   "bin": {
     "gendiff": "dist/bin/gendiff.js"
   },
@@ -26,9 +32,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/NeoShkolnick/project-lvl2-s417/issues"
-  },
-  "jest": {
-    "testEnvironment": "node"
   },
   "homepage": "https://github.com/NeoShkolnick/project-lvl2-s417#readme",
   "dependencies": {
