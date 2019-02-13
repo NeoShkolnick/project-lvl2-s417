@@ -1,4 +1,3 @@
-/* jshint esversion: 6 */
 import fs from 'fs';
 import _ from 'lodash';
 
@@ -30,7 +29,7 @@ export default (firsFile, SecondFile) => {
         print('+', el, jsonFile2[el]);
       }
     });
-    res += '}';
+    res += '}\n';
     return res;
   } catch (err) {
     console.error(`${err.path} - incorrect dirrectory`);
