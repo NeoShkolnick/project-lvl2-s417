@@ -27,6 +27,9 @@
   "bugs": {
     "url": "https://github.com/NeoShkolnick/project-lvl2-s417/issues"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "homepage": "https://github.com/NeoShkolnick/project-lvl2-s417#readme",
   "dependencies": {
     "commander": "^2.19.0",
