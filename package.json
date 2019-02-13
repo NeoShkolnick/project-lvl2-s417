@@ -28,7 +28,10 @@
   },
   "homepage": "https://github.com/NeoShkolnick/project-lvl2-s417#readme",
   "dependencies": {
-    "commander": "^2.19.0"
+    "commander": "^2.19.0",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.11",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

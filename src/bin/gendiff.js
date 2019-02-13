@@ -1,12 +1,19 @@
 #!/usr/bin/env node
+/* jshint esversion: 6 */
+import program from 'commander';
+import genDiff from '..';
 
-const program = require('commander');
+const wrapperGenDiff = (firsFile, SecondFile) => {
+  console.log(genDiff(firsFile, SecondFile));
+};
 
 program
   .description('Compares two configuration files and shows a difference.')
   .version('0.1.0')
-  .arguments('<firstConfig> <secondConfig>')
   .option('-f, --format [type]', 'Output format')
-  .parse(process.argv);
+  .arguments('<firstConfig> <secondConfig>')
+  .action(wrapperGenDiff);
+
+program.parse(process.argv);
 
 if (!program.args.length) program.help();
