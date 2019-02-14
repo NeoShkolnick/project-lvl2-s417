@@ -1,19 +1,26 @@
 import _ from 'lodash';
-import parsers from './parsers';
+import getContent from './parsers';
 
 export default (firsFile, secondFile) => {
-  const content1 = parsers(firsFile);
-  const content2 = parsers(secondFile);
+  const content1 = getContent(firsFile);
+  const content2 = getContent(secondFile);
 
-  const acc1 = Object.keys(content1).reduce((acc, el) => {
-    if (_.has(content2, el)) {
-      if (content1[el] === content2[el]) {
-        return [...acc, `    ${el}: ${content2[el]}`];
+  const keys1 = Object.keys(content1);
+  const keys2 = Object.keys(content2);
+  const results = _.union(keys1, keys2).reduce((acc, key) => {
+    if (_.has(content1, key) && _.has(content2, key)) {
+      if (content1[key] === content2[key]) {
+        return [...acc, `    ${key}: ${content1[key]}`];
       }
-      return [...acc, `  + ${el}: ${content2[el]}`, `  - ${el}: ${content1[el]}`];
+      return [...acc, `  + ${key}: ${content2[key]}`, `  - ${key}: ${content1[key]}`];
     }
-    return [...acc, `  - ${el}: ${content1[el]}`];
+    if (_.has(content1, key)) {
+      return [...acc, `  - ${key}: ${content1[key]}`];
+    }
+    if (_.has(content2, key)) {
+      return [...acc, `  + ${key}: ${content2[key]}`];
+    }
+    return acc;
   }, ['{']);
-  const acc2 = Object.keys(content2).reduce((acc, el) => (!_.has(content1, el) ? [...acc, `  + ${el}: ${content2[el]}`] : acc), acc1);
-  return [...acc2, '}', ''].join('\n');
+  return [...results, '}', ''].join('\n');
 };
