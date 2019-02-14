@@ -1,19 +1,19 @@
-import fs from 'fs';
 import _ from 'lodash';
+import parsers from './parsers';
 
-export default (firsFile, SecondFile) => {
-  const jsonFile1 = JSON.parse(fs.readFileSync(firsFile, 'utf8'));
-  const jsonFile2 = JSON.parse(fs.readFileSync(SecondFile, 'utf8'));
+export default (firsFile, secondFile) => {
+  const content1 = parsers(firsFile);
+  const content2 = parsers(secondFile);
 
-  const acc1 = Object.keys(jsonFile1).reduce((acc, el) => {
-    if (_.has(jsonFile2, el)) {
-      if (jsonFile1[el] === jsonFile2[el]) {
-        return [...acc, `    ${el}: ${jsonFile2[el]}`];
+  const acc1 = Object.keys(content1).reduce((acc, el) => {
+    if (_.has(content2, el)) {
+      if (content1[el] === content2[el]) {
+        return [...acc, `    ${el}: ${content2[el]}`];
       }
-      return [...acc, `  + ${el}: ${jsonFile2[el]}`, `  - ${el}: ${jsonFile1[el]}`];
+      return [...acc, `  + ${el}: ${content2[el]}`, `  - ${el}: ${content1[el]}`];
     }
-    return [...acc, `  - ${el}: ${jsonFile1[el]}`];
+    return [...acc, `  - ${el}: ${content1[el]}`];
   }, ['{']);
-  const acc2 = Object.keys(jsonFile2).reduce((acc, el) => (!_.has(jsonFile1, el) ? [...acc, `  + ${el}: ${jsonFile2[el]}`] : acc), acc1);
+  const acc2 = Object.keys(content2).reduce((acc, el) => (!_.has(content1, el) ? [...acc, `  + ${el}: ${content2[el]}`] : acc), acc1);
   return [...acc2, '}', ''].join('\n');
 };
