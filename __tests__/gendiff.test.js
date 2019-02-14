@@ -1,16 +1,15 @@
 import fs from 'fs';
 import genDiff from '../src';
 
-test('json file', () => {
-  const path1 = './__tests__/__fixtures__/before.json';
-  const path2 = './__tests__/__fixtures__/after.json';
-  const res = fs.readFileSync('./__tests__/__fixtures__/res', 'utf8');
-  expect(genDiff(path1, path2)).toBe(res);
-});
+const pathToTestFiles = './__tests__/__fixtures__/';
+const pathsToJSON = [pathToTestFiles + 'before.json', pathToTestFiles + 'after.json'];
+const pathsToYML = [pathToTestFiles + 'before.yml', pathToTestFiles + 'after.yml'];
+const pathsToINI = [pathToTestFiles + 'before.ini', pathToTestFiles + 'after.ini'];
 
-test('yml file', () => {
-  const path1 = './__tests__/__fixtures__/before.yml';
-  const path2 = './__tests__/__fixtures__/after.yml';
-  const res = fs.readFileSync('./__tests__/__fixtures__/res', 'utf8');
-  expect(genDiff(path1, path2)).toBe(res);
-});
+const res = fs.readFileSync('./__tests__/__fixtures__/res', 'utf8');
+test.each([pathsToJSON, pathsToYML, pathsToINI])(
+  "tests different format(JSON, yml, ini)",
+  (firsPath, secondPath) => {
+    expect(genDiff(firsPath, secondPath)).toBe(res);
+  }
+);
