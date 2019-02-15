@@ -6,12 +6,10 @@ import getObjectFromContentFile from './parsers';
 const getObjectFromFile = (filePath) => {
   const content = fs.readFileSync(filePath, 'utf8');
   const extensionFile = path.extname(filePath);
-  return getObjectFromContentFile(content, path.extname(filePath));
+  return getObjectFromContentFile(content, extensionFile);
 };
 
 export default (firsFilePath, secondFilePath) => {
-  const content1 = fs.readFileSync(firsFilePath, 'utf8');
-  const content2 = fs.readFileSync(secondFilePath, 'utf8');
   const objectFirst = getObjectFromFile(firsFilePath);
   const objectSecond = getObjectFromFile(secondFilePath);
 
