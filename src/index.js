@@ -19,9 +19,9 @@ const buildAST = (objectFirst, objectSecond) => {
         return [...acc, new Node('unmodified', key, objectFirst[key])];
       }
       if (objectFirst[key] instanceof Object && objectSecond[key] instanceof Object) {
-        return [...acc, new Node('unmodified', key, null, buildAST(objectFirst[key], objectSecond[key]))];
+        return [...acc, new Node('modified', key, null, buildAST(objectFirst[key], objectSecond[key]))];
       }
-      return [...acc, new Node('removed', key, objectFirst[key]), new Node('added', key, objectSecond[key])];
+      return [...acc, new Node('modified', key, [objectFirst[key], objectSecond[key]])];
     }
     if (_.has(objectFirst, key)) {
       return [...acc, new Node('removed', key, objectFirst[key])];
@@ -34,9 +34,19 @@ const buildAST = (objectFirst, objectSecond) => {
   return ast;
 };
 
-export default (firsFilePath, secondFilePath) => {
+const getDiffFromAST = (ast, format) => {
+  if (format === 'complex') {
+    return ['{', ...ast.map((node => node.toComplexStr())), '}\n'].join('\n');
+  }
+  if (format === 'plain') {
+    return `${ast.map((node => node.toPlainStr())).filter(el => el !== '').join('\n')}\n`;
+  }
+  return '';
+};
+
+export default (firsFilePath, secondFilePath, format) => {
   const objectFirst = getObjectFromFile(firsFilePath);
   const objectSecond = getObjectFromFile(secondFilePath);
   const ast = buildAST(objectFirst, objectSecond);
-  return ['{', ...ast.map((node => node.toStr())), '}\n'].join('\n');
+  return getDiffFromAST(ast, format);
 };
