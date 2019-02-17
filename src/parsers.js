@@ -8,6 +8,6 @@ const parseFunctions = {
 };
 
 export default (content, extensionFile) => {
-  const parser = parseFunctions[extensionFile];
-  return parser(content);
+  const parse = parseFunctions[extensionFile];
+  return parse(content);
 };
