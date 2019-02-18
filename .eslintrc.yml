@@ -17,4 +17,5 @@ extends:
   - 'plugin:jest/recommended'
 
 rules:
+  implicit-arrow-linebreak: "off"
   no-console: 0

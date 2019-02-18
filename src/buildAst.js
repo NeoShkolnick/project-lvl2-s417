@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Node } from './node';
+import Node from './node';
 
 const buildAst = (objectFirst, objectSecond) => {
   const keysFirst = Object.keys(objectFirst);
@@ -12,7 +12,7 @@ const buildAst = (objectFirst, objectSecond) => {
       if (objectFirst[key] instanceof Object && objectSecond[key] instanceof Object) {
         return [...acc, new Node('modified', key, null, buildAst(objectFirst[key], objectSecond[key]))];
       }
-      return [...acc, new Node('modified', key, [objectFirst[key], objectSecond[key]])];
+      return [...acc, new Node('shifted', key, [objectFirst[key], objectSecond[key]])];
     }
     if (_.has(objectFirst, key)) {
       return [...acc, new Node('removed', key, objectFirst[key])];
