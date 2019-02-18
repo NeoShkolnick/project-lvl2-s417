@@ -1,0 +1,61 @@
+[
+    {
+        "action": "removed",
+        "path": "common.setting2"
+    },
+    {
+        "action": "updated",
+        "path": "common.setting3",
+        "oldValue": true,
+        "newValue": {
+            "key": "value"
+        }
+    },
+    {
+        "action": "added",
+        "path": "common.setting6.ops",
+        "value": "vops"
+    },
+    {
+        "action": "added",
+        "path": "common.follow",
+        "value": false
+    },
+    {
+        "action": "added",
+        "path": "common.setting4",
+        "value": "blah blah"
+    },
+    {
+        "action": "added",
+        "path": "common.setting5",
+        "value": {
+            "key5": "value5"
+        }
+    },
+    {
+        "action": "updated",
+        "path": "group1.baz",
+        "oldValue": "bas",
+        "newValue": "bars"
+    },
+    {
+        "action": "updated",
+        "path": "group1.nest",
+        "oldValue": {
+            "key": "value"
+        },
+        "newValue": "str"
+    },
+    {
+        "action": "removed",
+        "path": "group2"
+    },
+    {
+        "action": "added",
+        "path": "group3",
+        "value": {
+            "fee": "100500"
+        }
+    }
+]

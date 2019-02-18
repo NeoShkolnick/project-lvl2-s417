@@ -21,3 +21,11 @@ test.each([pathsToJSON, pathsToYML, pathsToINI])(
     expect(genDiff(firsPath, secondPath, 'plain')).toBe(res);
   },
 );
+
+test.each([pathsToJSON, pathsToYML, pathsToINI])(
+  'tests different format(JSON, yml, ini) in format = json',
+  (firsPath, secondPath) => {
+    const res = fs.readFileSync('./__tests__/__fixtures__/jsonRes', 'utf8');
+    expect(genDiff(firsPath, secondPath, 'json')).toBe(res);
+  },
+);
