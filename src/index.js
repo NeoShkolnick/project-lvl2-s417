@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
-import Node from './node';
+import { Node, toPlainStr, toComplexStr } from './node';
 import getObjectFromContent from './parsers';
 
 const getObjectFromFile = (filePath) => {
@@ -36,10 +36,10 @@ const buildAST = (objectFirst, objectSecond) => {
 
 const getDiffFromAST = (ast, format) => {
   if (format === 'complex') {
-    return ['{', ...ast.map((node => node.toComplexStr())), '}\n'].join('\n');
+    return ['{', ...ast.map((node => toComplexStr(node))), '}\n'].join('\n');
   }
   if (format === 'plain') {
-    return `${ast.map((node => node.toPlainStr())).filter(el => el !== '').join('\n')}\n`;
+    return `${ast.map((node => toPlainStr(node))).filter(el => el !== '').join('\n')}\n`;
   }
   return '';
 };
