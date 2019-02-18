@@ -7,7 +7,9 @@ const parseFunctions = {
   '.json': JSON.parse,
 };
 
-export default (content, extensionFile) => {
+const getObjectFromContent = (content, extensionFile) => {
   const parse = parseFunctions[extensionFile];
   return parse(content);
 };
+
+export default getObjectFromContent;
